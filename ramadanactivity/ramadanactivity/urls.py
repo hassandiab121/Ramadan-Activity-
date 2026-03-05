@@ -16,11 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+import os
 from recieveActivities.views import recieve_activities
 
+admin_url = os.getenv('AdminUrl','admin/')
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(admin_url, admin.site.urls),
     path('recieveactivity', recieve_activities, name='recieve_activities'),
     path('', include('showActivities.urls')),
 ]
