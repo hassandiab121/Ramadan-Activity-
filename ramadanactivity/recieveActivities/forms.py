@@ -55,11 +55,20 @@ class JoinActivityForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-input',
-                'placeholder': 'أدخل رقم واتساب',
+                'placeholder': 'أدخل رقم واتساب مكون من 11 رقماً',
                 'type': 'tel',
+                'inputmode': 'numeric',
             }
         ),
         label='رقم واتساب',
         required=True,
     )
+
+    def clean_phone(self):
+        raw = self.cleaned_data.get('phone', '')
+        # Keep only digits
+        digits = ''.join(ch for ch in raw if ch.isdigit())
+        if len(digits) != 11:
+            raise forms.ValidationError('رقم الجوال يجب أن يحتوي على 11 رقمًا بالضبط.')
+        return digits
 
