@@ -1,0 +1,7 @@
+ramadanactivity/static/*
+ramadanactivity/staticfiles/*
+.RamadanActivity/*
+
+*.sqlite3
+*.log  
+*.env

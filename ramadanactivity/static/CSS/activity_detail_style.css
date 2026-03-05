@@ -1,0 +1,417 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #bebfc1 0%, #958f9a 100%);    min-height: 100vh;
+    padding: 20px;
+    padding-top: 100px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.detail-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    gap: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.detail-header h1 {
+    color: white;
+    font-size: 32px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-back {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-3px);
+}
+
+.detail-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.detail-date-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.join-section {
+    background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+}
+
+.btn-join {
+    display: inline-block;
+    align-items: center;
+    gap: 12px;
+    background: green;
+    color: white;
+    padding: 16px 40px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-join:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+}
+
+.btn-join:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.join-icon {
+    font-size: 24px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.join-text {
+    font-size: 16px;
+}
+
+.remind-section {
+    text-align: center;
+    padding: 15px 20px;
+}
+
+.btn-remind {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}
+
+.btn-remind:hover {
+    background: #20bd5a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+.date-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+    border: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.date-day {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.date-month {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.date-year {
+    font-size: 12px;
+    margin-top: 3px;
+    opacity: 0.9;
+}
+
+.date-info {
+    flex: 1;
+}
+
+.date-info p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.detail-content {
+    padding: 40px;
+}
+
+.detail-section {
+    margin-bottom: 30px;
+}
+
+.detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    color: #667eea;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-value {
+    color: #333;
+    font-size: 19px  ;
+    line-height: 1.8;
+    padding: 15px;
+    background: #f5f7fa;
+    border-radius: 8px;
+    border-right: 4px solid #667eea;
+    word-wrap: break-word;
+}
+
+.section-value.description {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.detail-actions {
+    display: none;
+}
+
+.btn-home {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-home:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-back-full {
+    display: inline-block;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-back-full:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding-top: 80px;
+    }
+
+    .detail-header {
+        padding: 15px 20px;
+        justify-content: flex-start;
+    }
+
+    .detail-header .btn-back-full {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+
+    .detail-date-section {
+        flex-direction: column;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .date-circle {
+        width: 100px;
+        height: 100px;
+    }
+
+    .date-day {
+        font-size: 28px;
+    }
+
+    .detail-content {
+        padding: 20px;
+    }
+
+    .detail-section {
+        margin-bottom: 20px;
+    }
+
+    .section-value {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .detail-actions {
+        display: none;
+    }
+
+    .btn-back-full {
+        padding: 12px 24px;
+    }
+
+    .btn-join {
+        padding: 14px 30px;
+        font-size: 15px;
+    }
+
+    .join-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 20px;
+    }
+}
+
+.join-activity-form {
+    padding: 30px 30px 40px;
+}
+
+.join-activity-form .form-group {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.join-activity-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #444;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.join-activity-form input[type="tel"] {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    text-align: right;
+    direction: rtl;
+}
+
+.join-activity-form input[type="tel"]::placeholder {
+    text-align: right;
+    direction: rtl;
+}
+
+.join-activity-form input[type="tel"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.25);
+}
+
+.join-activity-form .errors {
+    color: #d32f2f;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* Confirmation message div (appears after form submit) */
+.join-confirmation {
+    padding: 24px 30px 40px;
+    text-align: center;
+}
+
+.join-confirmation-box {
+    display: inline-block;
+    padding: 20px 28px;
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+    border: 2px solid #28a745;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(40, 167, 69, 0.25);
+    opacity: 0;
+    transform: translateY(-15px) scale(0.95);
+    animation: confirmIn 0.5s ease forwards;
+}
+
+.join-confirmation-box .icon {
+    display: block;
+    font-size: 42px;
+    margin-bottom: 10px;
+    animation: checkPop 0.6s ease 0.2s both;
+}
+
+@keyframes confirmIn {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes checkPop {
+    0% { transform: scale(0); opacity: 0; }
+    60% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}

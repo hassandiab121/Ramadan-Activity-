@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الانضمام إلى النشاط - {{ activity.name }}</title>
+    <link rel="stylesheet" href="{% static 'CSS/activity_detail_style.css' %}">
+    <style>
+        .join-activity-form {
+            padding: 30px 30px 40px;
+        }
+
+        .join-activity-form .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .join-activity-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .join-activity-form input[type="tel"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .join-activity-form input[type="tel"]::placeholder {
+            text-align: right;
+            direction: rtl;
+        }
+
+        .join-activity-form input[type="tel"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.25);
+        }
+
+        .join-activity-form .errors {
+            color: #d32f2f;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* Confirmation message div (appears after form submit) */
+        .join-confirmation {
+            padding: 24px 30px 40px;
+            text-align: center;
+        }
+
+        .join-confirmation-box {
+            display: inline-block;
+            padding: 20px 28px;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border: 2px solid #28a745;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 8px 24px rgba(40, 167, 69, 0.25);
+            opacity: 0;
+            transform: translateY(-15px) scale(0.95);
+            animation: confirmIn 0.5s ease forwards;
+        }
+
+        .join-confirmation-box .icon {
+            display: block;
+            font-size: 42px;
+            margin-bottom: 10px;
+            animation: checkPop 0.6s ease 0.2s both;
+        }
+
+        @keyframes confirmIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes checkPop {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="detail-header">
+            <a href="{% url 'show_activities' %}" class="btn-home">الرئيسية</a>
+            <a href="{% url 'activity_detail' activity.id %}" class="btn-back-full">← العودة لتفاصيل النشاط</a>
+        </div>
+
+        <div class="detail-card">
+            <div class="detail-date-section">
+                <div class="date-circle">
+                    <div class="date-day">{{ activity.Ramdan_day }}</div>
+                    <div class="date-month">رمضان</div>
+                    <div class="date-year">{{ activity.date|date:"Y" }}</div>
+                </div>
+                <div class="date-info">
+                    <h1>الانضمام إلى النشاط</h1>
+                    <p>أدخل رقم واتساب لإرسال رسالة تنبيه إليك .</p>
+                </div>
+            </div>
+
+        
+            <form method="post" action="{% url 'join_activity' activity.id %}" class="join-activity-form">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    {{ form.phone.label_tag }}
+                    {{ form.phone }}
+                    {% if form.phone.errors %}
+                        <div class="errors">{{ form.phone.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-join">
+                        <span class="join-icon">+</span>
+                        <span class="join-text">تأكيد الانضمام</span>
+                    </button>
+                </div>
+            </form>
+
+            {% if messages %}
+            <div class="join-confirmation" id="join-confirmation">
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                    <div class="join-confirmation-box" role="alert">
+                        <span class="icon">✓</span>
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+

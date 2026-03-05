@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأنشطة الرمضانية</title>
+    <link rel="stylesheet" href="{% static 'CSS/show_activities_style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="{% url 'recieve_activities' %}" class="btn-add">إضافة نشاط جديد</a>
+                
+            </div>
+        </div>
+
+            <h1>الأنشطة الرمضانية</h1>
+
+            {% if messages %}
+            <div class="join-confirmation">
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                    <div class="join-confirmation-box" role="alert">
+                        <span class="icon">✓</span>
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+ 
+
+        {% if activities %}
+            <div class="activities-grid">
+                {% for activity in activities %}
+                    <a href="{% url 'activity_detail' activity.id %}" class="activity-card-link">
+                        <div class="activity-card">
+                            <div class="activity-date">
+                                {{ activity.Ramdan_day }} - رمضان
+                            </div>
+                            <div class="activity-content">
+                                <h3 class="activity-name">{{ activity.name }}</h3>
+                                <p class="activity-location">
+                                    <span class="location-icon">📍</span>
+                                    {{ activity.location }}
+                                </p>
+                                {% if activity.description %}
+                                    <p class="activity-description">{{ activity.description|truncatewords:15 }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-activities">
+                <p>لا توجد أنشطة الآن</p>
+                <a href="{% url 'recieve_activities' %}" class="btn-add-primary">إضافة أول نشاط</a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

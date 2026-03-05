@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ activity.name }}</title>
+    <link rel="stylesheet" href="{% static 'CSS/activity_detail_style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="detail-header">
+            <a href="{% url 'show_activities' %}" class="btn-home">الرئيسية</a>
+            <a href="{% url 'show_activities' %}" class="btn-back-full">← العودة</a>
+        </div>
+
+        <div class="detail-card">
+            <div class="detail-date-section">
+                <div class="date-circle">
+                    <div class="date-day">{{ activity.Ramdan_day }}</div>
+                    <div class="date-month">رمضان</div>
+                    <div class="date-year">{{ activity.date|date:"Y" }}</div>
+                </div>
+                <div class="date-info">
+                   <!-- <p>التاريخ: <strong>  {{ activity.Ramdan_day }} - رمضان</strong></p>-->
+                    <h1>تفاصيل النشاط</h1>
+                </div> 
+            </div>
+
+        
+
+            <div class="detail-content">
+                <div class="detail-section">
+                    <h2 class="section-title">اسم النشاط</h2>
+                    <p class="section-value">{{ activity.name }}</p>
+                </div>
+
+                <div class="detail-section">
+                    <h2 class="section-title"> الموقع</h2>
+                    <p class="section-value">{{ activity.location }}</p>
+                </div>
+
+                {% if activity.description %}
+                    <div class="detail-section">
+                        <h2 class="section-title"> الوصف</h2>
+                        <p class="section-value description">{{ activity.description }}</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="join-section">
+                <a href="{% url 'join_activity' activity.id %}" class="btn-join">
+                    <span class="join-icon">+</span>
+                    <span class="join-text">انضم إلى النشاط</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
