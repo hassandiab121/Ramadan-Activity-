@@ -1,9 +1,11 @@
 ramadanactivity/static/*
 ramadanactivity/staticfiles/*
+ramadanactivity/ramadanactivity/__pycache__/*
+ramadanactivity/recieveActivities/__pycache__/*
 .RamadanActivity/*
 
 *.sqlite3
 *.log  
 *.env
-*.cpython*.pyc
+
 
