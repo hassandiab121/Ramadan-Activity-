@@ -32,7 +32,7 @@ if not SECRET_KEY:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =  os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ["192.168.1.9"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
