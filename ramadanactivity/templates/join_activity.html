@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الانضمام إلى النشاط - {{ activity.name }}</title>
+    <link rel="stylesheet" href="{% static 'CSS/activity_detail_style.css' %}">
+    <script src = "{% static 'JS/script.JS' %}">
+        
+    </script>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="detail-header">
+            <a href="{% url 'show_activities' %}" class="btn-home">الرئيسية</a>
+            <a href="{% url 'activity_detail' activity.id %}" class="btn-back-full">← العودة لتفاصيل النشاط</a>
+        </div>
+
+        <div class="detail-card" id="join-card">
+            <div class="detail-date-section">
+                <div class="date-circle">
+                    <div class="date-day">{{ activity.Ramdan_day }}</div>
+                    <div class="date-month">رمضان</div>
+                    <div class="date-year">{{ activity.date|date:"Y" }}</div>
+                </div>
+                <div class="date-info">
+                    <h1>الانضمام إلى النشاط</h1>
+                    <p>أدخل رقم واتساب لإرسال رسالة تنبيه إليك .</p>
+                </div>
+            </div>
+
+        
+            <form method="post" action="{% url 'join_activity' activity.id %}" class="join-activity-form" id="join-form">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    {{ form.phone.label_tag }}
+                    {{ form.phone }}
+                    <div class="errors" id="phone-error">
+                        {% if form.phone.errors %}
+                            {{ form.phone.errors }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-join">
+                        <span class="join-icon">+</span>
+                        <span class="join-text">تأكيد الانضمام</span>
+                    </button>
+                </div>
+            </form>
+
+            {% if messages %}
+            <div class="join-confirmation" id="join-confirmation">
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                    <div class="join-confirmation-box" role="alert">
+                        <span class="icon">✓</span>
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+   
+</body>
+</html>
+

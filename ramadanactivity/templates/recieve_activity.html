@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة نشاط رمضانى</title>
+    <link rel="stylesheet" href="{% static 'CSS/recieve_activities.css' %}">
+</head>
+<body class="has-header">
+    <div class="add-activity-header">
+        <a href="{% url 'show_activities' %}" class="btn-home">الرئيسية</a>
+    </div>
+    <div class="container">
+        <h1>إضافة نشاط</h1>
+        
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <form method="POST" action="recieveactivity " class="activity-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <div class="errors">{{ form.name.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+                {% if form.description.errors %}
+                    <div class="errors">{{ form.description.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.location.label_tag }}
+                {{ form.location }}
+                {% if form.location.errors %}
+                    <div class="errors">{{ form.location.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.day.label_tag }}
+                {{ form.day }}
+                {% if form.day.errors %}
+                    <div class="errors">{{ form.day.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" class="btn-submit">إرسال النشاط</button>
+                <button type="reset" class="btn-reset">مسح البيانات</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
