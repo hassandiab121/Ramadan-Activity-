@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     dataChoise.appendChild(select);
 
-    for (var i = 1; i <= 30; i++) {
+    for (var i = 15; i <= 30; i++) {
         const option = document.createElement("option");
         option.value = i ;
         option.textContent = i + " رمضان";
