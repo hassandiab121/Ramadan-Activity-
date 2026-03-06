@@ -5,3 +5,5 @@ ramadanactivity/staticfiles/*
 *.sqlite3
 *.log  
 *.env
+*.cpython*.pyc
+
