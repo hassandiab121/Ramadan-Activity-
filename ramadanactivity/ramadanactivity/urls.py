@@ -16,10 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import handler404
+
 import os
 from recieveActivities.views import recieve_activities
+from showActivities.views import custom_404_error
 
 admin_url = os.getenv('AdminUrl','admin/')
+handler404 = custom_404_error
 
 urlpatterns = [
     path(admin_url, admin.site.urls),

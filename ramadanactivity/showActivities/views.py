@@ -97,3 +97,7 @@ def activities_by_date_json(request):
         {'date': filter_date.isoformat(), 'activities': payload},
         json_dumps_params={'ensure_ascii': False},
     )
+
+def custom_404_error(request, exception):
+    messages.success(request, "النشاط الذى تطلبه إنتهى بالفعل")
+    return render(request, 'error_404.html')
